@@ -1,0 +1,36 @@
+@model List<LarSaoVicente.ViewModels.ItemImportado>
+
+<h1>Simulação de importação — Estoque atual</h1>
+<p>Nenhum dado foi gravado no banco. Esta é só uma prévia para conferência.</p>
+<p><strong>Total de linhas lidas:</strong> @Model.Count</p>
+<p><strong>Linhas com aviso:</strong> @Model.Count(i => i.Avisos.Any())</p>
+
+<table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+    <thead>
+        <tr>
+            <th>Nome original</th>
+            <th>Nome interpretado</th>
+            <th>Concentração</th>
+            <th>Forma</th>
+            <th>Qtd/embalagem</th>
+            <th>Estoque inicial calculado</th>
+            <th>Princípio ativo</th>
+            <th>Avisos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="@(item.Avisos.Any() ? "background:#fff3cd;" : "")">
+                <td>@item.NomeOriginal</td>
+                <td>@item.NomeBase</td>
+                <td>@item.Concentracao</td>
+                <td>@item.Forma</td>
+                <td>@item.QtdPorEmbalagem</td>
+                <td>@item.EstoqueInicialCalculado</td>
+                <td>@item.PrincipioAtivoEncontrado</td>
+                <td>@string.Join("; ", item.Avisos)</td>
+            </tr>
+        }
+    </tbody>
+</table>
