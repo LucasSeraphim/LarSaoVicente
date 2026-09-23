@@ -2081,11 +2081,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\LarSaoVicent\\LarSaoVicent.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\LarSaoVicent.csproj",
       "projectName": "LarSaoVicent",
-      "projectPath": "C:\\Users\\User\\Documents\\LarSaoVicent\\LarSaoVicent.csproj",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\LarSaoVicent.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\LarSaoVicent\\obj\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
