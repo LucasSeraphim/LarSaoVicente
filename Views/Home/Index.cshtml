@@ -1,8 +1,128 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutSistema";
+    ViewData["Title"] = "Controle de Medicamentos";
+    ViewData["Subtitulo"] = "Visão geral do estoque";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<p class="muted">Dados de exemplo. Nos próximos passos vamos ligar esta tela ao banco de dados.</p>
+
+<section class="cards">
+    <div class="card">
+        <div class="card-label">Total de medicamentos</div>
+        <div class="card-value">24</div>
+        <div class="card-note green">↑ 3 cadastrados este mês</div>
+    </div>
+    <div class="card">
+        <div class="card-label">Itens em estoque</div>
+        <div class="card-value">1.248</div>
+        <div class="card-note green">Estoque geral atualizado</div>
+    </div>
+    <div class="card">
+        <div class="card-label">Estoque baixo</div>
+        <div class="card-value orange">05</div>
+        <div class="card-note">Requer atenção</div>
+    </div>
+    <div class="card">
+        <div class="card-label">Próximos do vencimento</div>
+        <div class="card-value red">03</div>
+        <div class="card-note">Nos próximos 30 dias</div>
+    </div>
+</section>
+
+<div class="grid">
+    <div>
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Medicamentos cadastrados</h2>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Quantidade</th>
+                            <th>Validade</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Paracetamol 500mg</b><br><span class="muted">Comprimido</span></td>
+                            <td>350 un.</td>
+                            <td>12/2027</td>
+                            <td><span class="badge ok">Normal</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Losartana 50mg</b><br><span class="muted">Comprimido</span></td>
+                            <td>42 un.</td>
+                            <td>08/2026</td>
+                            <td><span class="badge low">Estoque baixo</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Amoxicilina 500mg</b><br><span class="muted">Cápsula</span></td>
+                            <td>86 un.</td>
+                            <td>10/2026</td>
+                            <td><span class="badge ok">Normal</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Dipirona 500mg</b><br><span class="muted">Comprimido</span></td>
+                            <td>18 un.</td>
+                            <td>04/2026</td>
+                            <td><span class="badge expired">Vencimento próximo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Movimentações recentes</h2>
+            </div>
+            <div class="activity">
+                <div class="activity-icon">↓</div>
+                <div><b>Saída de Paracetamol 500mg</b><br><span class="muted">120 unidades • Enfermaria 2 • Hoje, 09:42</span></div>
+            </div>
+            <div class="activity">
+                <div class="activity-icon">↑</div>
+                <div><b>Entrada de Losartana 50mg</b><br><span class="muted">100 unidades • Compra #284 • Ontem, 15:18</span></div>
+            </div>
+            <div class="activity">
+                <div class="activity-icon">↑</div>
+                <div><b>Entrada de Fraldas geriátricas</b><br><span class="muted">50 unidades • Compra #283 • 10/09/2026</span></div>
+            </div>
+        </section>
+    </div>
+
+    <div>
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Alertas importantes</h2>
+                <span class="badge low">03 alertas</span>
+            </div>
+            <div class="alert">
+                <i class="dot"></i>
+                <div><strong>Losartana 50mg com estoque baixo</strong><span>Apenas 42 unidades disponíveis</span></div>
+            </div>
+            <div class="alert">
+                <i class="dot" style="background:#ef4444"></i>
+                <div><strong>Dipirona 500mg próxima do vencimento</strong><span>Validade: abril de 2026</span></div>
+            </div>
+            <div class="alert">
+                <i class="dot" style="background:#ef4444"></i>
+                <div><strong>Insulina NPH próxima do vencimento</strong><span>Validade: maio de 2026</span></div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Permissões do perfil</h2>
+            <p class="muted">
+                @(User.IsInRole("Administrador")
+                    ? "Pode cadastrar, editar, excluir, registrar entradas/saídas e gerenciar usuários."
+                    : User.IsInRole("Farmacia")
+                        ? "Pode cadastrar e editar medicamentos e registrar entradas/saídas."
+                        : "Pode apenas visualizar o dashboard e os relatórios.")
+            </p>
+        </section>
+    </div>
 </div>

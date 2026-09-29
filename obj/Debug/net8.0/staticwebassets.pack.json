@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\LarSaoVicent.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\wwwroot\\css\\dashboard.css",
+      "PackagePath": "staticwebassets\\css\\dashboard.css"
+    },
+    {
       "Id": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

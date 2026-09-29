@@ -1,0 +1,47 @@
+@model LarSaoVicente.ViewModels.LoginViewModel
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Entrar";
+}
+
+<div class="login-page">
+    <div class="login-side">
+        <div class="brand"><div class="brand-icon">✚</div><span>Lar São Vicente</span></div>
+        <h2>Controle de Medicamentos</h2>
+        <p>Acompanhe estoque, validades e movimentações da farmácia em um só lugar.</p>
+    </div>
+
+    <div class="login-form-area">
+        <div class="login-box">
+            <h1>Entrar</h1>
+            <span class="muted">Use seu e-mail e senha para acessar o sistema.</span>
+
+            <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger login-error"></div>
+
+                <div class="field">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" autocomplete="username" autofocus />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="field">
+                    <label asp-for="Senha"></label>
+                    <input asp-for="Senha" autocomplete="current-password" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                <label class="check">
+                    <input asp-for="Lembrar" />
+                    Manter conectado
+                </label>
+
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

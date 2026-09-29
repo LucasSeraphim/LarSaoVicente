@@ -1,8 +1,10 @@
 using LarSaoVicente.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LarSaoVicente.Controllers
 {
+    [Authorize(Roles = "Administrador,Farmacia")]
     public class ImportacaoController : Controller
     {
         private readonly IWebHostEnvironment _ambiente;

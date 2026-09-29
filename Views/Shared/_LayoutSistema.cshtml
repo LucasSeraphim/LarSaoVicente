@@ -1,0 +1,54 @@
+@{
+    var nome = User.Identity?.Name ?? "";
+    var iniciais = nome.Length >= 2 ? nome.Substring(0, 2).ToUpper() : "?";
+    var perfil = User.IsInRole("Administrador") ? "Administrador"
+               : User.IsInRole("Farmacia") ? "Funcionário da farmácia"
+               : "Consulta";
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Lar São Vicente</title>
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand"><div class="brand-icon">✚</div><span>Lar São Vicente</span></div>
+            <nav class="nav">
+                <a class="active" asp-controller="Home" asp-action="Index">▦ <span>Dashboard</span></a>
+                <a href="#">▣ <span>Medicamentos</span></a>
+                <a href="#">⇄ <span>Movimentações</span></a>
+                <a href="#">▤ <span>Compras</span></a>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a href="#">⚙ <span>Usuários e acessos</span></a>
+                }
+            </nav>
+            <div class="sidebar-bottom">Sistema de controle<br>Versão 1.0</div>
+        </aside>
+
+        <main class="content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">@ViewData["Subtitulo"]</p>
+                    <h1 class="title">@ViewData["Title"]</h1>
+                </div>
+                <div class="userbox">
+                    <div><b>@nome</b><div class="muted">@perfil</div></div>
+                    <div class="avatar">@iniciais</div>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn btn-light">Sair</button>
+                    </form>
+                </div>
+            </header>
+
+            @RenderBody()
+        </main>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

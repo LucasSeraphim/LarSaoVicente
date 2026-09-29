@@ -15,6 +15,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+    builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -41,11 +47,16 @@ app.MapControllerRoute(
 
 
 
-// Cria os papéis e o usuário administrador na primeira vez que o sistema roda
+// Aplica as migrations pendentes e cria os papéis e o usuário administrador
+// na primeira vez que o sistema roda.
 using (var scope = app.Services.CreateScope())
 {
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await db.Database.MigrateAsync();
+
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
     string[] papeis = { "Administrador", "Farmacia", "Consulta" };
     foreach (var papel in papeis)
@@ -55,18 +66,27 @@ using (var scope = app.Services.CreateScope())
     }
 
     string emailAdmin = "admin@larsaovicente.local";
+    string? senhaAdmin = builder.Configuration["AdminSeed:Senha"];
+
     if (await userManager.FindByEmailAsync(emailAdmin) == null)
     {
-        var admin = new ApplicationUser
+        if (string.IsNullOrWhiteSpace(senhaAdmin))
         {
-            UserName = emailAdmin,
-            Email = emailAdmin,
-            NomeCompleto = "Administrador",
-            EmailConfirmed = true
-        };
-        var resultado = await userManager.CreateAsync(admin, "Admin@123");
-        if (resultado.Succeeded)
-            await userManager.AddToRoleAsync(admin, "Administrador");
+            logger.LogWarning("Administrador não criado: defina a senha em AdminSeed:Senha.");
+        }
+        else
+        {
+            var admin = new ApplicationUser
+            {
+                UserName = emailAdmin,
+                Email = emailAdmin,
+                NomeCompleto = "Administrador",
+                EmailConfirmed = true
+            };
+            var resultado = await userManager.CreateAsync(admin, senhaAdmin);
+            if (resultado.Succeeded)
+                await userManager.AddToRoleAsync(admin, "Administrador");
+        }
     }
 }
 

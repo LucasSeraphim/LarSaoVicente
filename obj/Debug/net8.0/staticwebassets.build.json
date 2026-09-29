@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M9z20ma7P3JfiCtpYFSiUBj9h+YlGH23+Umt/GOehy8=",
+  "Hash": "53wN2G1EEUKWOHhM9xOQS/GIxcJY8+2kXFkyCensol4=",
   "Source": "LarSaoVicent",
   "BasePath": "_content/LarSaoVicent",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\LarSaoVicent.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\wwwroot\\css\\dashboard.css",
+      "SourceId": "LarSaoVicent",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\wwwroot\\",
+      "BasePath": "_content/LarSaoVicent",
+      "RelativePath": "css/dashboard.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\dashboard.css"
     },
     {
       "Identity": "C:\\Users\\User\\Documents\\GitHub\\LarSaoVicente\\wwwroot\\css\\site.css",
